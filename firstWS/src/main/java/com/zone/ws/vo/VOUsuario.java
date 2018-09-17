@@ -1,16 +1,36 @@
 package com.zone.ws.vo;
 
-public class VOUsuario {
+import java.io.Serializable;
 
+public class VOUsuario implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1083341102755414278L;
+	private Integer idUsuario;
 	private String usuario;
+	private String email;
 	private String pass;
-	private boolean uservalido;
-	
+	private Integer estado;
+	private Integer idPerfil;
+	//private boolean uservalido;
+	public Integer getIdUsuario() {
+		return idUsuario;
+	}
+	public void setIdUsuario(Integer idUsuario) {
+		this.idUsuario = idUsuario;
+	}
 	public String getUsuario() {
 		return usuario;
 	}
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getPass() {
 		return pass;
@@ -18,16 +38,29 @@ public class VOUsuario {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	public boolean isUservalido() {
-		return uservalido;
+	public Integer getEstado() {
+		return estado;
 	}
-	public void setUservalido(boolean uservalido) {
-		this.uservalido = uservalido;
+	public void setEstado(Integer estado) {
+		this.estado = estado;
+	}
+	public Integer getIdPerfil() {
+		return idPerfil;
+	}
+	public void setIdPerfil(Integer idPerfil) {
+		this.idPerfil = idPerfil;
 	}
 	@Override
 	public String toString() {
-		return "VOUsuario [usuario=" + usuario + ", pass=" + pass + ", uservalido=" + uservalido + "]";
-	} 
+		return "VOUsuario [idUsuario=" + idUsuario + ", usuario=" + usuario + ", email=" + email + ", pass=" + pass
+				+ ", estado=" + estado + ", idPerfil=" + idPerfil + "]";
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 }

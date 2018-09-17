@@ -16,7 +16,7 @@ public class RestClient {
 		VOUsuario usu = new VOUsuario();
 		usu.setUsuario("ces");
 		usu.setPass("gfgd");
-		usu.setUservalido(false);
+		//usu.setUservalido(false);
 		
 		ClientConfig clientConfig = new DefaultClientConfig();
 		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
@@ -27,7 +27,7 @@ public class RestClient {
 		usu=response.getEntity(VOUsuario.class);
 		
 		System.out.println("Respuesta "+usu.getUsuario());
-		System.out.println("Respuesta "+usu.isUservalido());
+		//System.out.println("Respuesta "+usu.isUservalido());
 		
 		
 		

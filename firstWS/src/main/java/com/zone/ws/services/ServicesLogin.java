@@ -19,9 +19,9 @@ public class ServicesLogin {
 	@Consumes({MediaType.APPLICATION_JSON})
 	@Produces({MediaType.APPLICATION_JSON})
 	public VOUsuario validaUsuario(VOUsuario ousuario){
-		ousuario.setUservalido(false);
+		//ousuario.setUservalido(false);
 		if(ousuario.getUsuario().equals("ces") && ousuario.getPass().equals("ces")){
-			ousuario.setUservalido(true);
+			//ousuario.setUservalido(true);
 		}
 		return ousuario;
 	}
