@@ -45,32 +45,90 @@ public class DUser {
 		return lista;
 	}
 	
-public Integer agregar (VOUsuario user ){
-	Integer lineasafectadas=0;
 	
-	try {
-		String sql="INSERT INTO USUARIO (nombre,email,estado,id_perfil) VALUES (?,?,?,?)";
-		cn=Conexion.getConexion();
-		ps= (PreparedStatement) cn.prepareStatement(sql);
-		ps.setString(1, user.getUsuario());
-		ps.setString(2, user.getEmail());
-		ps.setInt(3, user.getEstado());
-		ps.setInt(4, user.getIdPerfil());
-		lineasafectadas=ps.executeUpdate();
-		
-	} catch (Exception e) {
-		System.out.println("ERROR AL INSERTAR"+e.getMessage());
-		// TODO: handle exception
-	}finally {
+	public VOUsuario buscar (Integer id){
+		VOUsuario user=null;
 		try {
-			cn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			String sql="SELECT id_isuario,nombre,email,estado,id_perfil FROM usuario WHERE id_usuario=?";
+			cn=Conexion.getConexion();
+			ps= (PreparedStatement)cn.prepareStatement(sql);
+			ps.setInt(1, id);
+			rs=ps.executeQuery();
+			while(rs.next()){
+				user = new VOUsuario();
+				user.setIdUsuario(rs.getInt("id_usuario"));
+				user.setUsuario(rs.getString("nombre"));
+				user.setEmail(rs.getString("email"));
+				user.setEstado(rs.getInt("estado"));
+				user.setIdPerfil(rs.getInt("id_perfil"));
+			}
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("ERROR AL BUSCAR USUARIO" +e.getMessage());
 		}
+		return  user;
 	}
-	return lineasafectadas;
-}
+	
+	public Integer agregar (VOUsuario user ){
+		Integer lineasafectadas=0;
+		
+		try {
+			String sql="INSERT INTO USUARIO (nombre,email,estado,id_perfil) VALUES (?,?,?,?)";
+			cn=Conexion.getConexion();
+			ps= (PreparedStatement) cn.prepareStatement(sql);
+			ps.setString(1, user.getUsuario());
+			ps.setString(2, user.getEmail());
+			ps.setInt(3, user.getEstado());
+			ps.setInt(4, user.getIdPerfil());
+			lineasafectadas=ps.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("ERROR AL REGISTRAR USUARIO  "+e.getMessage());
+			// TODO: handle exception
+		}finally {
+			try {
+				cn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.getMessage();
+			}
+		}
+		return lineasafectadas;
+	}
+	
+	public Integer modificar (VOUsuario user){
+		Integer lineasafectadas=0;
+		
+		try {
+			String sql="UPDATE USUARIO SET nombre=?,email=?,estado=?,id_perfil=? WHERE id_usuario=?";
+			cn=Conexion.getConexion();
+			ps= (PreparedStatement) cn.prepareStatement(sql);
+			ps.setString(1, user.getUsuario());
+			ps.setString(2, user.getEmail());
+			ps.setInt(3, user.getEstado());
+			ps.setInt(4, user.getIdPerfil());
+			ps.setInt(5, user.getIdUsuario());
+			lineasafectadas=ps.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("ERROR AL MODIFICAR USUARIO  "+e.getMessage());
+			// TODO: handle exception
+		}finally {
+			try {
+				cn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.getMessage();
+			}
+		}
+		return lineasafectadas;
+	}
+
+
+
+
 
 	public static void main(String[] args) {
 	 /*
